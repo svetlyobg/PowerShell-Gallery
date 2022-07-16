@@ -14,10 +14,9 @@ Creating subfolders for each category of scripts
 ## Index:
 
 ## Hyper-V
-![Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
+[Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
-
-![Stop-All-Hyper-V-Virtual-Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Stop-All-Hyper-V-Virtual-Machines.ps1)
+[Stop-All-Hyper-V-Virtual-Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Stop-All-Hyper-V-Virtual-Machines.ps1)
 
 ## Random
 
@@ -41,7 +40,7 @@ Creating subfolders for each category of scripts
 
 [Set TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Set-TCP-IP-Listening-Port.ps1)
 
-[Check if a Port is Opened](/PowerShell-Gallery/main/PowerShell/Random/Check-if-a-Port-is-Opened.ps1)
+[Check if a Port is Opened](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Check-if-a-Port-is-Opened.ps1)
 
 ## Windows Event Log
-![Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
+[Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
