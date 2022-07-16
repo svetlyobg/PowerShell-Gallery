@@ -58,5 +58,7 @@ Creating subfolders for each category of scripts
 
 [Dump SQL to website folder, create zip and delete the SQL file](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Backup-DB-and-Website-Zip-2.ps1)
 
+[Dump MySQL DB to website folder, convert to UTF8mb4 for MariaDB, create zip and delete the SQL file - 3](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Backup-MySQLDB-with-UTF8MB4-for-MariaDB-and-Website-Zip-3.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
