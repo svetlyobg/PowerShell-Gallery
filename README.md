@@ -31,7 +31,7 @@ Creating subfolders for each category of scripts
 
 ![Microsoft Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Help-Full-Template.ps1)
 
-![Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Help-Template.ps1)
+![Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Custom-Help-Template.ps1)
 
 ![Recursively Unblock Files in The Current Directory](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Unblock-Files-in-The-Current-Directory.ps1)
 
