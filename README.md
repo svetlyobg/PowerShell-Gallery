@@ -46,5 +46,7 @@ Creating subfolders for each category of scripts
 
 [Create a .zip Archive with an Optimal Compression](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Create-zip-Archive.ps1)
 
+[Create a .zip Archive with an Optimal Compression - 2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Create-zip-Archive-2.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
