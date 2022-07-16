@@ -21,25 +21,27 @@ Creating subfolders for each category of scripts
 
 ## Random
 
-![Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
+[Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
 
-![Create a Self Signed Certificate for Code Signing](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Create-a-Self-Signed-Certificate-for-Code-Signing.ps1)
+[Create a Self Signed Certificate for Code Signing](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Create-a-Self-Signed-Certificate-for-Code-Signing.ps1)
 
-![Go Live UK LTD - Create a Self Signed Certificate and Code Sign a PowerShell Script with It](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/GoLiveUKLTD-Create-a-Self-Signed-Certificate-and-Code-Sign-It.ps1)
+[Go Live UK LTD - Create a Self Signed Certificate and Code Sign a PowerShell Script with It](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/GoLiveUKLTD-Create-a-Self-Signed-Certificate-and-Code-Sign-It.ps1)
 
-![Update Windows Operating System](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/PowerShellUpdateWindows.ps1)
+[Update Windows Operating System](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/PowerShellUpdateWindows.ps1)
 
-![Microsoft Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Help-Full-Template.ps1)
+[Microsoft Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Help-Full-Template.ps1)
 
-![Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Custom-Help-Template.ps1)
+[Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Custom-Help-Template.ps1)
 
-![Recursively Unblock Files in The Current Directory](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Unblock-Files-in-The-Current-Directory.ps1)
+[Recursively Unblock Files in The Current Directory](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Unblock-Files-in-The-Current-Directory.ps1)
 
-![Get Windows 10 License Key.ps1](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Windows-10-License-Key.ps1)
+[Get Windows 10 License Key.ps1](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Windows-10-License-Key.ps1)
 
-![Check TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Check-TCP-IP-Listening-Port.ps1)
+[Check TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Check-TCP-IP-Listening-Port.ps1)
 
-![Set TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Set-TCP-IP-Listening-Port.ps1)
+[Set TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Set-TCP-IP-Listening-Port.ps1)
+
+[Check if a Port is Opened](/PowerShell-Gallery/main/PowerShell/Random/Check-if-a-Port-is-Opened.ps1)
 
 ## Windows Event Log
 ![Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
