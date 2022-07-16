@@ -29,5 +29,9 @@ Creating subfolders for each category of scripts
 
 ![Update Windows Operating System](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/PowerShellUpdateWindows.ps1)
 
+![Microsoft Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Help-Full-Template.ps1)
+
+![Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Help-Template.ps1)
+
 ## Windows Event Log
 ![Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
