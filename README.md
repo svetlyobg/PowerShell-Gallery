@@ -54,7 +54,7 @@ Creating subfolders for each category of scripts
 
 [Update a Current .zip Archive via 7z Commands](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Update-zip-Archive-via-7z.ps1)
 
-[Dump SQL to website folder, create password protected zip via 7z and delete the SQL file](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Backup-DB-and-Website-Protected-Zip-1.ps1)
+[Dump SQL to website folder, create password protected zip via 7z and delete the SQL file](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Backup-DB-and-Website-Protected-Zip-1.ps1)
 
 [Dump SQL to website folder, create zip and delete the SQL file](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Backup-DB-and-Website-Zip-2.ps1)
 
