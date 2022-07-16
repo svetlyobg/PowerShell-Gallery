@@ -19,6 +19,8 @@ Creating subfolders for each category of scripts
 
 [Check for All Enabled Active Directory Users](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-for-All-Enabled-Active-Directory-Users.ps1)
 
+[Check Server Roles and Features](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
