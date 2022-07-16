@@ -33,5 +33,7 @@ Creating subfolders for each category of scripts
 
 ![Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Help-Template.ps1)
 
+![Recursively Unblock Files in The Current Directory](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Unblock-Files-in-The-Current-Directory.ps1)
+
 ## Windows Event Log
 ![Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
