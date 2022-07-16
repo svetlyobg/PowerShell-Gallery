@@ -37,5 +37,7 @@ Creating subfolders for each category of scripts
 
 ![Get Windows 10 License Key.ps1](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Windows-10-License-Key.ps1)
 
+![Check TCP/IP Listening Port](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Check-TCP-IP-Listening-Port.ps1)
+
 ## Windows Event Log
 ![Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
