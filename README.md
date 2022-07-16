@@ -66,8 +66,10 @@ Creating subfolders for each category of scripts
 
 [Recursively Delete Folder and Its Subfolders - 3](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Delete-Folder-and-Its-Subfolders-1.ps3)
 
-[Export SysMon Event Logs in .xml](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-SysMon-Event-Logs-in-xml.ps1)
+
 
 
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
+
+[Export SysMon Event Logs in .xml](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-SysMon-Event-Logs-in-xml.ps1)
