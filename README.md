@@ -114,6 +114,8 @@ Creating subfolders for each category of scripts
 
 [Querying All WMI Win32 Objects of the localhost](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Querying-All-WMI-Win32-Objects.ps1)
 
+[Convert OVA to VHD (VirtualBox is required)](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Convert-OVA-to-VHD.ps1)
+
 
 
 
