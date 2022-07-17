@@ -21,6 +21,10 @@ Creating subfolders for each category of scripts
 
 [Check Server Roles and Features](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
 
+## Exchange
+[Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
+
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
@@ -117,8 +121,6 @@ Creating subfolders for each category of scripts
 [Convert OVA to VHD (VirtualBox is required)](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Convert-OVA-to-VHD.ps1)
 
 [Find the 32 Largest Files in the Current Directory)](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Find-the-32-Largest-Files-in-the-Current-Directory.ps1)
-
-
 
 
 ## Windows Event Log
