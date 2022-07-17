@@ -26,6 +26,10 @@ Creating subfolders for each category of scripts
 
 [Stop-All-Hyper-V-Virtual-Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Stop-All-Hyper-V-Virtual-Machines.ps1)
 
+##IIS-Websites
+
+[Restart Application Pool and Website](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell7.ps1)
+
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
