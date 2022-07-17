@@ -49,6 +49,8 @@ Creating subfolders for each category of scripts
 [Removes a Web App Pool and IIS a Wesbsite for Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Remove-Website-and-Application-Pool-PowerShell5.ps1)
 
 [Removes a Web App Pool and IIS a Wesbsite for Powershell 7](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Remove-Website-and-Application-Pool-PowerShell7.ps1)
+
+[Restart Server's Application Pools](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Server-Application-Pools.ps1)
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
