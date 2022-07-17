@@ -108,6 +108,8 @@ Creating subfolders for each category of scripts
 
 [Recursively Delete Folder and Its Subfolders - 3](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recursively-Delete-Folder-and-Its-Subfolders-1.ps3)
 
+[Querying All WMI Win32 Objects of the localhost](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Querying-All-WMI-Win32-Objects.ps1)
+
 
 
 
