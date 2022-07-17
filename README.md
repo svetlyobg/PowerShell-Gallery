@@ -34,6 +34,10 @@ Creating subfolders for each category of scripts
 
 [Gets Website Bindings Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Get-Website-Bindings-Powershell5.ps1)
 
+[Gets Website Bindings Powershell 7](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Get-Website-Bindings-Powershell7.ps1)
+
+[Stops a Web App Pool and IIS a Wesbsite Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Stop-Website-and-Application-Pool-Powershell5.ps1)
+
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
