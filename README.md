@@ -32,7 +32,7 @@ Creating subfolders for each category of scripts
 
 [Restart Application Pool and Website Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell5.ps1)
 
-[Gets Website Bindings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Get-Website-Bindings-Powershell5.ps1)
+[Gets Website Bindings Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Get-Website-Bindings-Powershell5.ps1)
 
 ## Random
 
