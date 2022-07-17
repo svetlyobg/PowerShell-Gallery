@@ -26,11 +26,13 @@ Creating subfolders for each category of scripts
 
 [Stop-All-Hyper-V-Virtual-Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Stop-All-Hyper-V-Virtual-Machines.ps1)
 
-##IIS-Websites
+## IIS-Websites
 
 [Restart Application Pool and Website Powershell 7](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell7.ps1)
 
 [Restart Application Pool and Website Powershell 5](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell5.ps1)
+
+[Gets Website Bindings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Get-Website-Bindings-Powershell5.ps1)
 
 ## Random
 
