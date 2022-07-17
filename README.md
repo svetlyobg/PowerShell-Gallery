@@ -53,6 +53,9 @@ Creating subfolders for each category of scripts
 [Restart Server's Application Pools](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Server-Application-Pools.ps1)
 
 [Restart Server's Application PoolsRestarts IIS Server](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-IIS-Server.ps1)
+
+[Export an IIS Website and Its Bindings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Export-an-IIS-Website-and-Its-Bindings.ps1)
+
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
