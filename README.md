@@ -28,6 +28,8 @@ Creating subfolders for each category of scripts
 
 [Enable Hyper-V in Windows Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Enable-Hyper-V-in-Windows-Home.ps1)
 
+[Perform Hyper-V Planned Replication Failover and Failback via PowerShell](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Perform-Hyper-V-Planned-Replication-Failover-and-Failback-via-PowerShell.ps1)
+
 ## IIS-Websites
 
 [Restart Application Pool and Website Powershell 7](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell7.ps1)
