@@ -122,6 +122,7 @@ Creating subfolders for each category of scripts
 
 [Find the 32 Largest Files in the Current Directory)](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Find-the-32-Largest-Files-in-the-Current-Directory.ps1)
 
+[Create-BasicTask cmdlet registers a scheduled task definition on a local computer](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/New-Scheduled-Task.ps1)
 
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
