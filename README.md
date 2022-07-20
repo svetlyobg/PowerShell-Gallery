@@ -124,6 +124,8 @@ Creating subfolders for each category of scripts
 
 [Create-BasicTask cmdlet registers a scheduled task definition on a local computer](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/New-Scheduled-Task.ps1)
 
+[Update zip Archive](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Update-zip-Archive.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
