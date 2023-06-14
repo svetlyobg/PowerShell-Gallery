@@ -76,7 +76,8 @@ $ws = Get-Website
 $ws.PhysicalPath
 $ws.PhysicalPath | ConvertTo-Html | Out-File C:\Users\$env:UserName\Desktop\path.html
 $ws.Bindings.Collection
-$ws.Bindings.Collection | ConvertTo-Html | Out-File C:\Users\$env:UserName\Desktop\bindings.html
+#$ws.Bindings.Collection | ConvertTo-Html | Out-File C:\Users\$env:UserName\Desktop\bindings.html
+$ws.Bindings.Collection.bindingInformation | ConvertTo-Html | Out-File C:\Users\$env:UserName\Desktop\bindings.html
 
 
 # SIG # Begin signature block
