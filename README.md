@@ -32,6 +32,8 @@ Creating subfolders for each category of scripts
 
 [Enable Mailbox Audit](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Mailbox-Audit.md)
 
+[Audit Email Deletion Per Mailbox](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Email-Deletion-Per-Mailbox.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
