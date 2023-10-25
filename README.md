@@ -38,6 +38,10 @@ Creating subfolders for each category of scripts
 
 [Audit Owner Move To Deleted Items](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Owner-Move-To-Deleted-Items.ps1)
 
+[Mailbox Audit Log Search](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Mailbox-Audit-Log-Search.ps1)
+
+
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
