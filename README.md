@@ -34,7 +34,7 @@ Creating subfolders for each category of scripts
 
 [Audit Email Deletion Per Mailbox](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Email-Deletion-Per-Mailbox.ps1)
 
-[Audit Delegate Send As And Send On Behalf]()
+[Audit Delegate Send As And Send On Behalf](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Delegate-Send-As-And-Send-On-Behalf.ps1)
 
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
