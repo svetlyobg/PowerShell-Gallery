@@ -21,6 +21,8 @@ Creating subfolders for each category of scripts
 
 [Check Server Roles and Features](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
 
+[Get all users home directories](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Get-all-users-home-directories.ps1)
+
 ## Exchange
 [Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
 
@@ -28,6 +30,7 @@ Creating subfolders for each category of scripts
 
 [Get the Cumulative Update (CU) version of an Exchange Server ](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Get-the-Cumulative-Update-CU-version-of-an-Exchange-Server.ps1)
 
+[Enable Mailbox Audit](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Mailbox-Audit.md)
 
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
@@ -71,6 +74,8 @@ Creating subfolders for each category of scripts
 [Export All IIS Websites and Bindings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Export-All-IIS-Websites-and-Bindings.ps1)
 
 [Import JSON to PowerShell](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Import-JSON-to-PowerShell.ps1)
+
+[Clear IIS Log files - vbs](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Clear%20IIS%20Log%20files.vbs)
 
 ## Random
 
