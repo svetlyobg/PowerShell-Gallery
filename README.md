@@ -36,6 +36,8 @@ Creating subfolders for each category of scripts
 
 [Audit Delegate Send As And Send On Behalf](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Delegate-Send-As-And-Send-On-Behalf.ps1)
 
+[Audit Owner Move To Deleted Items](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Audit-Owner-Move-To-Deleted-Items.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
