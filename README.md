@@ -44,7 +44,7 @@ Creating subfolders for each category of scripts
 
 [Check Public Folders](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Public-Folders.ps1)
 
-[Exchange Mailbox Move Request](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange-Mailbox-Move-Request.ps1)
+
 
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
