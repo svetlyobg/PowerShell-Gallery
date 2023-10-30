@@ -11,3 +11,5 @@ Get-MailboxExportRequest -Status
 Get-MailboxExportRequest -Status InProgress
 
 Remove-MailboxExportRequest -Identity "User Display Name or Mailbox"
+
+Get-MailboxDatabase -Status | Format-Table Name, DatabaseSize, AvailableNewMailboxSpace -Auto
