@@ -46,6 +46,8 @@ Creating subfolders for each category of scripts
 
 [Exchange Mailbox Export Request](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange-Mailbox-Export-Request.ps1)
 
+[Exchange SSL Generation](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Generate-SSL-CSR.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
