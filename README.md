@@ -57,6 +57,8 @@ Creating subfolders for each category of scripts
 
 [Perform Hyper-V Planned Replication Failover and Failback via PowerShell](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Perform-Hyper-V-Planned-Replication-Failover-and-Failback-via-PowerShell.ps1)
 
+[Check Exchange Mailbox Mail Flow](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Exchange-Mailbox-Mail-Flow.ps1)
+
 ## IIS-Websites
 
 [Restart Application Pool and Website Powershell 7](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Restart-Website-and-Application-Pool-PowerShell7.ps1)
