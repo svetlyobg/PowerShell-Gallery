@@ -48,6 +48,8 @@ Creating subfolders for each category of scripts
 
 [Exchange SSL Generation](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Generate-SSL-CSR.ps1)
 
+[Exchange Attachment Size Limit](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange-Attachment-Size-Limit.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
