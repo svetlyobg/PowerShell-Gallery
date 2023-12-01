@@ -22,11 +22,11 @@ Set-RemoteDomain * -AutoReplyEnabled $true
 #
 Set-RemoteDomain * -AutoForwardEnabled $true
 #
-##Enable OOF for Outlook 2003 and previous (for Exchange 2007 and 2010 support)
+##Enable OOF for Outlook
 #
 Set-RemoteDomain * -AllowedOOFType $ExternalLegacy
 #
 ##To change all at once
-#
-Set-RemoteDomain * -AutoReplyEnabled $true -AutoForwardEnabled $true -AllowedOOFType $ExternalLegacy
+#; 
+Set-RemoteDomain * -AutoReplyEnabled $true -Verbose; Set-RemoteDomain * -AutoForwardEnabled $true -Verbose; Set-RemoteDomain * -AllowedOOFType $ExternalLegacy -Verbose
 #
