@@ -1,3 +1,4 @@
+#You might have an error called BlockAFToExternalUser
 #
 #Get the currently configured a Remote Domain
 Get-RemoteDomain
