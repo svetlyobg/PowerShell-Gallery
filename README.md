@@ -50,6 +50,8 @@ Creating subfolders for each category of scripts
 
 [Exchange Attachment Size Limit](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange-Attachment-Size-Limit.ps1)
 
+[Check and create mailbox rule](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-and-create-mailbox-rule.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
