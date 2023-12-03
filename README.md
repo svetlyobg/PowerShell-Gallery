@@ -52,6 +52,8 @@ Creating subfolders for each category of scripts
 
 [Check and create mailbox rule](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-and-create-mailbox-rule.ps1)
 
+[Allow or prevent Automatic Forwarding-Replying to the Internet](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Allow-or-prevent-Automatic-ForwardingReplying-to-the-Internet.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
