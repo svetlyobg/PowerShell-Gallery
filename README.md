@@ -26,6 +26,8 @@ Creating subfolders for each category of scripts
 ## Exchange
 [Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Email-Usage-OWA-Devices-Email-Groups-Shared-Mailboxes.ps1)
 
+[Check Mailbox Usage](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Mailbox-Usage.ps1)
+
 [External Sender Caution Banner](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/External-Sender-Caution-Banner.html)
 
 [Get the Cumulative Update (CU) version of an Exchange Server ](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Get-the-Cumulative-Update-CU-version-of-an-Exchange-Server.ps1)
