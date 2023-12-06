@@ -24,7 +24,7 @@ Creating subfolders for each category of scripts
 [Get all users home directories](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Get-all-users-home-directories.ps1)
 
 ## Exchange
-[Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-Server-Roles-and-Features.ps1)
+[Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Email-Usage-OWA-Devices-Email-Groups-Shared-Mailboxes.ps1)
 
 [External Sender Caution Banner](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/External-Sender-Caution-Banner.html)
 
