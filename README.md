@@ -56,6 +56,8 @@ Creating subfolders for each category of scripts
 
 [Allow or prevent Automatic Forwarding-Replying to the Internet](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Allow-or-prevent-Automatic-ForwardingReplying-to-the-Internet.ps1)
 
+[Check Exchange Mailbox Mail Flow](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Exchange-Mailbox-Mail-Flow.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
@@ -64,8 +66,6 @@ Creating subfolders for each category of scripts
 [Enable Hyper-V in Windows Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Enable-Hyper-V-in-Windows-Home.ps1)
 
 [Perform Hyper-V Planned Replication Failover and Failback via PowerShell](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Perform-Hyper-V-Planned-Replication-Failover-and-Failback-via-PowerShell.ps1)
-
-[Check Exchange Mailbox Mail Flow](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Exchange-Mailbox-Mail-Flow.ps1)
 
 ## IIS-Websites
 
