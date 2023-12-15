@@ -163,6 +163,8 @@ Creating subfolders for each category of scripts
 
 [Remotely Restart Computer Remote Desktop Session](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Remotely-Restart-Computer-Remote-Desktop-Session.ps1)
 
+[How to Log In Automatically to Windows](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/How-to-Log-In-Automatically-to-Windows.cmd)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
