@@ -23,6 +23,8 @@ Creating subfolders for each category of scripts
 
 [Get all users home directories](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Get-all-users-home-directories.ps1)
 
+[Display all active users and their recent last passwords changes](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Display-all-active-users-and-recent-last-passwords-changes.ps1.ps1)
+
 ## Exchange
 [Check Email Usage, Mailbox Statistics, OWA Devices, Email Groups Members and Shared Mailboxes Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Email-Usage-OWA-Devices-Email-Groups-Shared-Mailboxes.ps1)
 
