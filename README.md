@@ -115,6 +115,12 @@ Creating subfolders for each category of scripts
 
 [Update Windows Operating System](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/PowerShellUpdateWindows.ps1)
 
+[Version Check Script 1]()
+
+[Version Check Script 2]()
+
+[Update Windows Operating System 2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/_C/windowsUpdate.ps1)
+
 [Microsoft Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Get-Help-Full-Template.ps1)
 
 [Custom Help Template File for PowerShell Scripts](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Custom-Help-Template.ps1)
