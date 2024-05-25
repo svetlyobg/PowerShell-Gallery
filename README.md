@@ -175,6 +175,8 @@ Creating subfolders for each category of scripts
 
 [How to Shut Down or Restart a Remote Computer](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/How-to-Shut-Down-or-Restart-a-Remote-Computer.ps1)
 
+[CVEs Check and Result Export Using mitre.org](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/CheckCVE_1.1.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
