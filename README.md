@@ -177,6 +177,8 @@ Creating subfolders for each category of scripts
 
 [CVEs Check and Result Export Using mitre.org](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/CheckCVE_1.1.ps1)
 
+[CVEs Check and Result Export Using both mitre.org and tenable.com](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/CheckCVE_1.2.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
