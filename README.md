@@ -105,6 +105,8 @@ Creating subfolders for each category of scripts
 
 [Clear IIS Log files - vbs](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/Clear%20IIS%20Log%20files.vbs)
 
+[DFS Replicated Folder Status](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/DFS-Replicated-Folder-Status.ps1)
+
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
