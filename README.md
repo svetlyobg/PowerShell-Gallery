@@ -183,6 +183,8 @@ Creating subfolders for each category of scripts
 
 [Removing Windows 10 and Windows 11 Pro PIN Prompt](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/win10pro-remove-pin.ps1) — Created by [www.corsolutions.co.uk](https://www.corsolutions.co.uk/office365/remove-windows-pin)
 
+[Open Indexing Options using Command Prompt](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Open-Indexing-Options-using-Command-Prompt.cmd)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
