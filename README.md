@@ -185,6 +185,8 @@ Creating subfolders for each category of scripts
 
 [Open Indexing Options using Command Prompt](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Open-Indexing-Options-using-Command-Prompt.cmd)
 
+[Recovery Key Export on Windows 11 Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recovery_Key_Export.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
