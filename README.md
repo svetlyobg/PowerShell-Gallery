@@ -187,6 +187,8 @@ Creating subfolders for each category of scripts
 
 [Recovery Key Export on Windows 11 Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recovery_Key_Export.ps1)
 
+[Initiate Microsoft Office Click-To-Run Update](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Initiate_Microsoft_Office_Click-To-Run_Update.ps1)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
