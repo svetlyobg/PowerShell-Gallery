@@ -187,7 +187,7 @@ Creating subfolders for each category of scripts
 
 [Recovery Key Export on Windows 11 Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recovery_Key_Export.ps1)
 
-[Initiate Microsoft Office Click-To-Run Update](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Initiate_Microsoft_Office_Click-To-Run_Update.ps1)
+[Initiate Microsoft Office Click-To-Run Update](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/refs/heads/main/PowerShell/Random/Initiate%20Microsoft%20Office%20Click-To-Run%20Update.ps1)
 
 [Disable New Outlook Takeover v2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Disable_New_Outlook_Takeover_v2.ps1)
 
