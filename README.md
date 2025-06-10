@@ -13,6 +13,10 @@ Creating subfolders for each category of scripts
 
 ## Index:
 
+## 365
+
+[Prevent Outlook in Connecting to Office365 Account](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/365/Prevent-Outlook-in-Connecting-to-Office365-Account.cmd)
+
 ## Active-Directory
 
 [Check for All Disabled Active Directory Users](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-for-All-Disabled-Active-Directory-Users.ps1)
