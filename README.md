@@ -111,6 +111,8 @@ Creating subfolders for each category of scripts
 
 [DFS Replicated Folder Status](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/DFS-Replicated-Folder-Status.ps1)
 
+[Change the wildcard SSL for all websites under a single top domain in bulk](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/IIS-Websites/UpdateBindingsWithNewSSL.ps1)
+
 ## Random
 
 [Code Sign a PowerShell Script with an Existing Self Signed Certificate](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Code-Sign-a-PowerShell-Script-with-an-Existing-Self-Signed-Certificate.ps1)
