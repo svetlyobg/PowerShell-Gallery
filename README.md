@@ -29,6 +29,8 @@ Creating subfolders for each category of scripts
 
 [Privacy and internet-related settings for Microsoft Office 2016](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/Fix_ExcelAutoSave_OutlookTemplates.ps1)
 
+[Manual uninstaller for Microsoft Office Click-to-Run](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/Remove_Office.ps1)
+
 ## Active-Directory
 
 [Check for All Disabled Active Directory Users](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-for-All-Disabled-Active-Directory-Users.ps1)
