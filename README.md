@@ -80,6 +80,8 @@ Creating subfolders for each category of scripts
 
 [Export all Microsoft 365 and distribution group members](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Export_Tenant_Groups_Members.ps1)
 
+[Auto-expanding archive settings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange_Powershell_Auto-Expand-Archive.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
