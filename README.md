@@ -15,7 +15,11 @@ Creating subfolders for each category of scripts
 
 ## 365
 
-[Prevent Outlook in Connecting to Office365 Account](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/365/Prevent-Outlook-in-Connecting-to-Office365-Account.cmd)
+[Prevent Outlook in Connecting to Office365 Account](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/365/Remove_Acrobat_SignIn.ps1)
+
+## Adobe
+
+[Suppre Adobe Acrobat DC sign-in prompts and disable automatic updates](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Adobe/Prevent-Outlook-in-Connecting-to-Office365-Account.cmd)
 
 ## MS Office
 
