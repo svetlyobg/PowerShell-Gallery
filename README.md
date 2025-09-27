@@ -19,6 +19,10 @@ Creating subfolders for each category of scripts
 
 ## MS Office
 
+[Initiate Microsoft Office Click-To-Run Update](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/refs/heads/main/PowerShell/MSOffice/Initiate%20Microsoft%20Office%20Click-To-Run%20Update.ps1)
+
+[Disable New Outlook Takeover v2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/Disable_New_Outlook_Takeover_v2.ps1)
+
 [Privacy and internet-related settings for Microsoft Office 2016](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/Fix_ExcelAutoSave_OutlookTemplates.ps1)
 
 ## Active-Directory
@@ -196,10 +200,6 @@ Creating subfolders for each category of scripts
 [Open Indexing Options using Command Prompt](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Open-Indexing-Options-using-Command-Prompt.cmd)
 
 [Recovery Key Export on Windows 11 Home](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Recovery_Key_Export.ps1)
-
-[Initiate Microsoft Office Click-To-Run Update](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/refs/heads/main/PowerShell/Random/Initiate%20Microsoft%20Office%20Click-To-Run%20Update.ps1)
-
-[Disable New Outlook Takeover v2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Disable_New_Outlook_Takeover_v2.ps1)
 
 [Enable Windows 11 Upgrade v2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Enable_Windows_11_Upgrade_v2.ps1)
 
