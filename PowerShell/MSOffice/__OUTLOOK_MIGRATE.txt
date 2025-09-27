@@ -1,0 +1,522 @@
+# by Martin Angelov
+Option Explicit
+
+' Required for ShellExecute to open the log file
+#If VBA7 Then ' 64-bit or 32-bit Office 2010+
+    Private Declare PtrSafe Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" ( _
+        ByVal hwnd As LongPtr, _
+        ByVal lpOperation As String, _
+        ByVal lpFile As String, _
+        ByVal lpParameters As String, _
+        ByVal lpDirectory As String, _
+        ByVal nShowCmd As Long) As LongPtr
+#Else ' 32-bit Office 2007 or earlier
+    Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" ( _
+        ByVal hwnd As Long, _
+        ByVal lpOperation As String, _
+        ByVal lpFile As String, _
+        ByVal lpParameters As String, _
+        ByVal lpDirectory As String, _
+        ByVal nShowCmd As Long) As Long
+#End If
+
+' Global variables
+Dim skippedItemsCount As Long ' Counter for skipped/error items
+Dim errorLog As String      ' String to store error messages
+Dim itemsImported As Long ' Counter for items imported IN THIS RUN
+
+' --- MAIN SUBROUTINE ---
+Sub ImportPSTIntoDefaultMailbox()
+    Dim ns As Outlook.NameSpace
+    Dim sourcePSTRoot As Outlook.MAPIFolder
+    Dim destRootFolder As Outlook.MAPIFolder
+    Dim sourcePSTName As String
+    Dim destStoreName As String
+    Dim sourceItemCountTotal As Long
+    Dim destItemCountBefore As Long
+    Dim destItemCountAfter As Long
+    Dim item_Root As Object ' Variable for items in the root of sourcePSTRoot
+    Dim currentItemSubject_Root As String
+    Dim copiedItem_Root As Object
+
+    Dim rootDestItemsCache As Object ' Scripting.Dictionary for root items duplicate check
+
+    ' Initialize variables and error handling
+    On Error GoTo ErrorHandler_Main
+    skippedItemsCount = 0
+    errorLog = ""
+    itemsImported = 0
+    Debug.Print "Status: Initializing PST import..."
+    DoEvents
+
+    ' 1. Get MAPI namespace
+    Set ns = Application.GetNamespace("MAPI")
+    Debug.Print "1. MAPI namespace obtained."
+
+    ' 2. Prompt user to select the source PST's root folder
+    MsgBox "Select the ROOT of the SOURCE PST (e.g., 'Personal Folders' or the PST file name)." & vbCrLf & _
+           "A 'Deleted Items' folder directly under this selected root will be SKIPPED.", vbInformation
+    Set sourcePSTRoot = Application.Session.PickFolder
+    If sourcePSTRoot Is Nothing Then
+        MsgBox "Cancelled. Import aborted.", vbExclamation: GoTo Cleanup_Main
+    End If
+    If Not sourcePSTRoot.parent Is Nothing Then ' True root's parent is Nothing
+        Debug.Print "Warning: Selected source appears to be a subfolder: " & sourcePSTRoot.FolderPath
+        If MsgBox("Selected: '" & sourcePSTRoot.FolderPath & "' (a subfolder)." & vbCrLf & _
+                  "Top-level 'Deleted Items' skip applies to direct children of this selection." & vbCrLf & _
+                  "Continue with '" & sourcePSTRoot.Name & "' as root?", vbQuestion + vbYesNo, "Confirm Source") = vbNo Then
+            GoTo Cleanup_Main
+        End If
+    End If
+    sourcePSTName = sourcePSTRoot.Name ' Using .Name for brevity in logs/messages
+    Debug.Print "2. Source PST root: '" & sourcePSTRoot.FolderPath & "'"
+
+    ' 3. Get the Destination Root Folder (Default Store)
+    On Error Resume Next
+    Set destRootFolder = ns.DefaultStore.GetRootFolder
+    On Error GoTo ErrorHandler_Main
+    If destRootFolder Is Nothing Then
+         MsgBox "Could not get default store root. Ensure default account is set.", vbCritical: GoTo Cleanup_Main
+    End If
+    destStoreName = ns.DefaultStore.DisplayName
+    Debug.Print "3. Destination: Default Store '" & destStoreName & "' (Root: '" & destRootFolder.FolderPath & "')"
+
+    ' Confirmation Message
+    If MsgBox("MERGE CONFIRMATION:" & vbCrLf & _
+              "FROM: '" & sourcePSTName & "' (Path: " & sourcePSTRoot.FolderPath & ")" & vbCrLf & _
+              "TO: '" & destStoreName & "' (Path: " & destRootFolder.FolderPath & ")" & vbCrLf & vbCrLf & _
+              "KEY FOLDER RULES:" & vbCrLf & _
+              "1. A folder named 'Deleted Items' IF IT'S A DIRECT CHILD of '" & sourcePSTRoot.Name & "' WILL BE SKIPPED." & vbCrLf & _
+              "2. 'Recoverable Items' and other top-level folders (and their subfolders, incl. any named 'Deletions') WILL BE PROCESSED." & vbCrLf & _
+              "3. Folders named 'Discovery Holds' or 'PurviewHolds' (if found anywhere deeper) WILL BE SKIPPED." & vbCrLf & _
+              "Duplicates (by key) skipped. Custom forms may reset." & vbCrLf & _
+              "This is long for large PSTs & cannot be easily undone. CONTINUE?", _
+              vbExclamation + vbYesNo + vbDefaultButton2, "Confirm Merge") = vbNo Then
+        MsgBox "Import cancelled.", vbInformation: GoTo Cleanup_Main
+    End If
+
+    Debug.Print "Status: Calculating item counts..."
+    DoEvents
+    sourceItemCountTotal = GetFolderItemCount(sourcePSTRoot)
+    destItemCountBefore = GetFolderItemCount(destRootFolder)
+    Debug.Print "4. Source Items (recursive, pre-skip total): " & sourceItemCountTotal
+    Debug.Print "5. Destination Items BEFORE: " & destItemCountBefore
+
+    ' --- Build Cache for Destination ROOT Folder Items ---
+    Set rootDestItemsCache = CreateObject("Scripting.Dictionary")
+    rootDestItemsCache.CompareMode = vbTextCompare
+    Dim existingRootItem As Object, rootItemKey As String, rootCacheBuildCount As Long : rootCacheBuildCount = 0
+    On Error Resume Next
+    Dim destRootFolderItemCount As Long: destRootFolderItemCount = destRootFolder.Items.count
+    If Err.Number = 0 And destRootFolderItemCount > 0 Then
+        Debug.Print "   Building duplicate cache for " & destRootFolderItemCount & " existing items in DESTINATION ROOT '" & destRootFolder.Name & "'"
+        DoEvents
+        For Each existingRootItem In destRootFolder.Items
+            rootItemKey = GenerateItemKey(existingRootItem)
+            If rootItemKey <> "" And Not rootDestItemsCache.Exists(rootItemKey) Then rootDestItemsCache.Add rootItemKey, True
+        Next existingRootItem
+        Debug.Print "   Finished duplicate cache for DESTINATION ROOT. Cached " & rootDestItemsCache.count & " unique keys."
+    ElseIf Err.Number <> 0 Then errorLog = errorLog & "WARN: No access to items in dest root '" & destRootFolder.Name & "' for cache. Err#" & Err.Number & ":" & Err.Description & vbCrLf: Err.Clear
+    End If
+    On Error GoTo ErrorHandler_Main
+    ' --- End Root Cache Build ---
+
+    ' 5. Copy ITEMS directly from sourcePSTRoot itself
+    Debug.Print "6a. Copying ITEMS from source root '" & sourcePSTRoot.Name & "' to destination root '" & destRootFolder.Name & "'"
+    Dim rootItemsProcessed As Long: rootItemsProcessed = 0 
+		Dim rootItemsTotalInFolder As Long
+    On Error Resume Next: rootItemsTotalInFolder = sourcePSTRoot.Items.count
+    If Err.Number <> 0 Then errorLog = errorLog & "WARN: No items count for source root '" & sourcePSTRoot.Name & "'. Err#" & Err.Number & ":" & Err.Description & vbCrLf: rootItemsTotalInFolder = -1: Err.Clear
+    On Error GoTo ErrorHandler_Main
+
+    If rootItemsTotalInFolder > 0 Or rootItemsTotalInFolder = -1 Then
+        For Each item_Root In sourcePSTRoot.Items
+            Err.Clear: On Error GoTo RootItemErrorHandler_Main
+            currentItemSubject_Root = "[No Subject]"
+            On Error Resume Next: currentItemSubject_Root = item_Root.Subject: If Err.Number <> 0 Then Err.Clear
+            On Error GoTo RootItemErrorHandler_Main
+            rootItemsProcessed = rootItemsProcessed + 1
+            Debug.Print "Status: Root Item " & rootItemsProcessed & IIf(rootItemsTotalInFolder = -1, "", " of " & rootItemsTotalInFolder) & ": " & currentItemSubject_Root
+            DoEvents
+            Dim currentSourceRootItemKey As String: currentSourceRootItemKey = GenerateItemKey(item_Root)
+            Dim rootItemIsDuplicate As Boolean: If currentSourceRootItemKey <> "" And rootDestItemsCache.Exists(currentSourceRootItemKey) Then rootItemIsDuplicate = True
+            If Not rootItemIsDuplicate Then
+                Set copiedItem_Root = Nothing: Set copiedItem_Root = item_Root.Copy
+                If Not copiedItem_Root Is Nothing Then
+                    Call CheckAndFixMessageClass(copiedItem_Root, currentItemSubject_Root, sourcePSTRoot.Name)
+                    copiedItem_Root.Move destRootFolder
+                    If Err.Number <> 0 Then
+                         errorLog = errorLog & "ERR Moving root item '" & currentItemSubject_Root & "' from '" & sourcePSTRoot.Name & "'. Err#" & Err.Number & ":" & Err.Description & vbCrLf
+                         skippedItemsCount = skippedItemsCount + 1: On Error Resume Next: copiedItem_Root.Delete: Err.Clear
+                    Else
+                         itemsImported = itemsImported + 1
+                         If currentSourceRootItemKey <> "" And Not rootDestItemsCache.Exists(currentSourceRootItemKey) Then rootDestItemsCache.Add currentSourceRootItemKey, True
+                    End If
+                Else
+                    errorLog = errorLog & "ERR Copying root item '" & currentItemSubject_Root & "' from '" & sourcePSTRoot.Name & "'. Err#" & Err.Number & ":" & Err.Description & vbCrLf: skippedItemsCount = skippedItemsCount + 1
+                End If
+            Else
+                errorLog = errorLog & "Skip (DUPE root item by Key): '" & currentItemSubject_Root & "' in '" & destRootFolder.Name & "'" & vbCrLf: skippedItemsCount = skippedItemsCount + 1
+            End If
+RootItemContinue_Main: Set copiedItem_Root = Nothing: On Error GoTo ErrorHandler_Main
+        Next item_Root
+    Else
+        Debug.Print "   Source root '" & sourcePSTRoot.Name & "' has no items to copy directly."
+    End If
+    On Error GoTo ErrorHandler_Main: Debug.Print "6b. Root item copy complete."
+
+    ' 6. Copy SUBFOLDERS (from under sourcePSTRoot) and their items recursively
+    Debug.Print "6c. Processing SUBFOLDERS of source root '" & sourcePSTRoot.Name & "'"
+    Dim topLevelSourceFolder As Outlook.MAPIFolder
+    On Error Resume Next: Dim topLevelFolderCount As Long: topLevelFolderCount = sourcePSTRoot.Folders.count: If Err.Number <> 0 Then topLevelFolderCount = -1: Err.Clear
+    On Error GoTo ErrorHandler_Main
+
+    If topLevelFolderCount > 0 Then
+        For Each topLevelSourceFolder In sourcePSTRoot.Folders
+            Dim folderNameLower_TopLevel As String: folderNameLower_TopLevel = LCase(topLevelSourceFolder.Name)
+            If folderNameLower_TopLevel = "deleted items" Then ' RULE 1
+                Debug.Print "RULE 1: SKIPPING TOP-LEVEL 'Deleted Items' folder: " & topLevelSourceFolder.FolderPath
+                errorLog = errorLog & "INFO: RULE 1 - Skipped TOP-LEVEL folder '" & topLevelSourceFolder.Name & "' and its subfolders." & vbCrLf
+                Dim itemsInSkippedTopLevelFolder As Long
+                On Error Resume Next: itemsInSkippedTopLevelFolder = GetFolderItemCount(topLevelSourceFolder)
+                If Err.Number <> 0 Then itemsInSkippedTopLevelFolder = 0: Err.Clear
+                skippedItemsCount = skippedItemsCount + itemsInSkippedTopLevelFolder
+                On Error GoTo ErrorHandler_Main
+            Else
+                Debug.Print "Status: Processing top-level folder: " & topLevelSourceFolder.FolderPath
+                DoEvents
+                CopyFoldersAndItems topLevelSourceFolder, destRootFolder, itemsImported ' Recursive call
+            End If
+        Next topLevelSourceFolder
+    ElseIf topLevelFolderCount = 0 Then
+        Debug.Print "   Source root '" & sourcePSTRoot.Name & "' has no subfolders."
+    Else ' topLevelFolderCount = -1 (error accessing .Folders.Count)
+        errorLog = errorLog & "WARN: Could not access subfolders of '" & sourcePSTRoot.Name & "'. Subfolder processing skipped." & vbCrLf
+    End If
+    Debug.Print "7. Recursive folder processing complete. Total items copied: " & itemsImported
+
+    Debug.Print "Status: Finalizing..."
+    DoEvents
+    destItemCountAfter = GetFolderItemCount(destRootFolder)
+    Debug.Print "8. Destination Items AFTER: " & destItemCountAfter
+
+    Dim msg As String
+    msg = "Import Complete!" & vbCrLf & vbCrLf & _
+          "Source: '" & sourcePSTName & "'" & vbCrLf & _
+          "Destination: '" & destStoreName & "'" & vbCrLf & vbCrLf & _
+          "Items Copied: " & itemsImported & vbCrLf & _
+          "Skipped (dupes/errors/rules): " & skippedItemsCount & vbCrLf & vbCrLf & _
+          "See log for details."
+    MsgBox msg, vbInformation, "PST Merge"
+    SaveLogFile sourcePSTName, destStoreName, sourceItemCountTotal, destItemCountBefore, destItemCountAfter, itemsImported, skippedItemsCount
+    Debug.Print "9. Log file saved."
+
+Cleanup_Main:
+    Debug.Print "Status: Cleaning up..."
+    DoEvents: On Error Resume Next
+    Set ns = Nothing: Set sourcePSTRoot = Nothing: Set destRootFolder = Nothing
+    Set topLevelSourceFolder = Nothing: Set item_Root = Nothing: Set copiedItem_Root = Nothing
+    Set rootDestItemsCache = Nothing: Set existingRootItem = Nothing
+    Debug.Print "10. Cleanup finished."
+    Exit Sub
+
+RootItemErrorHandler_Main:
+    errorLog = errorLog & "ERR Processing root item '" & currentItemSubject_Root & "'. Err#" & Err.Number & ":" & Err.Description & vbCrLf
+    skippedItemsCount = skippedItemsCount + 1
+    If Not copiedItem_Root Is Nothing Then On Error Resume Next: copiedItem_Root.Delete: Err.Clear
+    Err.Clear: Resume RootItemContinue_Main
+
+ErrorHandler_Main:
+    Debug.Print "GENERAL ERROR in Main Sub!"
+    MsgBox "GENERAL VBA ERROR!" & vbCrLf & "Err#" & Err.Number & ": " & Err.Description & vbCrLf & _
+           "Module: " & Err.Source & vbCrLf & "Import may be incomplete.", vbCritical, "Import Error"
+    If Len(errorLog) > 0 Or skippedItemsCount > 0 Or itemsImported > 0 Then
+         SaveLogFile sourcePSTName, destStoreName, sourceItemCountTotal, destItemCountBefore, destItemCountAfter, itemsImported, skippedItemsCount
+    End If
+    Resume Cleanup_Main
+End Sub
+
+' --- HELPER FUNCTION TO GENERATE UNIQUE KEY ---
+Function GenerateItemKey(OutlookItem As Object) As String
+    Dim key As String, itemSubjectForKey As String, itemDate1 As Date, itemDate2 As Date
+    Dim itemSize As Long, date1Str As String, date2Str As String, itemTypeName As String
+    On Error Resume Next
+    itemTypeName = "[UnkType]": itemSubjectForKey = "[NoSubj]": itemSize = 0
+    date1Str = "00000000000000": date2Str = "00000000000000"
+
+    If Not OutlookItem Is Nothing Then
+        itemTypeName = TypeName(OutlookItem): itemSubjectForKey = LCase(OutlookItem.Subject): Err.Clear
+        Select Case itemTypeName
+            Case "MailItem": itemDate1 = OutlookItem.SentOn: If Err.Number <> 0 Or itemDate1 = #1/1/4501# Then itemDate1 = OutlookItem.ReceivedTime
+                Err.Clear: itemSize = OutlookItem.Size: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case "AppointmentItem", "MeetingItem": itemDate1 = OutlookItem.Start: Err.Clear: itemDate2 = OutlookItem.End: Err.Clear: itemSize = OutlookItem.Size: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+                If itemDate2 > #1/1/1900# And itemDate2 <> #1/1/4501# Then date2Str = Format(itemDate2, "yyyymmddhhnnss")
+            Case "TaskItem": itemDate1 = OutlookItem.DueDate: If Err.Number <> 0 Or itemDate1 = #1/1/4501# Then itemDate1 = OutlookItem.StartDate
+                If Err.Number <> 0 Or itemDate1 = #1/1/4501# Then itemDate1 = OutlookItem.CreationTime
+                Err.Clear: itemSize = OutlookItem.Size: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case "ContactItem": itemSubjectForKey = LCase(OutlookItem.FileAs): If itemSubjectForKey = "" Then itemSubjectForKey = LCase(OutlookItem.FullName)
+                Err.Clear: itemDate1 = OutlookItem.LastModificationTime: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case "NoteItem": itemSize = Len(OutlookItem.Body): Err.Clear: itemDate1 = OutlookItem.LastModificationTime: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case "DistListItem": itemSubjectForKey = LCase(OutlookItem.DLName): Err.Clear
+                On Error Resume Next: itemSize = OutlookItem.MemberCount: Err.Clear
+                itemDate1 = OutlookItem.LastModificationTime: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case "PostItem": itemDate1 = OutlookItem.PostedTime: If Err.Number <> 0 Or itemDate1 = #1/1/4501# Then itemDate1 = OutlookItem.LastModificationTime
+                Err.Clear: itemSize = OutlookItem.Size: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+            Case Else: itemDate1 = OutlookItem.LastModificationTime: Err.Clear: itemSize = OutlookItem.Size: Err.Clear
+                If itemDate1 > #1/1/1900# And itemDate1 <> #1/1/4501# Then date1Str = Format(itemDate1, "yyyymmddhhnnss")
+        End Select
+    End If
+    key = itemTypeName & "|" & itemSubjectForKey & "|" & date1Str & "|" & date2Str & "|" & CStr(itemSize)
+    If Err.Number <> 0 Then ' Error during property access for key parts
+        errorLog = errorLog & "WARN KeyGen:Item '" & itemSubjectForKey & "'.T:'" & itemTypeName & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf
+        GenerateItemKey = TypeName(OutlookItem) & "|" & Format(Now, "yyyymmddhhnnss") & "|" & Rnd() ' Fallback
+        Err.Clear
+    Else
+        GenerateItemKey = key
+    End If
+    On Error GoTo 0
+End Function
+
+' --- SUBROUTINE TO RECURSIVELY COPY FOLDERS AND ITEMS ---
+Sub CopyFoldersAndItems(sourceFolder As Outlook.MAPIFolder, destinationParentFolder As Outlook.MAPIFolder, ByRef currentTotalImported As Long)
+    ' --- START OF CopyFoldersAndItems DECLARATIONS ---
+    Dim item_Recur As Object ' Suffix '_Recur' for variables local to this recursive sub
+    Dim subFolder_Recur As Outlook.MAPIFolder
+    Dim destFolder As Outlook.MAPIFolder
+    Dim createdFolder As Boolean
+    Dim currentItemSubject_Recur As String
+    Dim copiedItem_Recur As Object
+    Dim itemsInFolderProcessed As Long
+    Dim itemsInFolderTotalInSource As Long
+    Dim destFolderItemsCache As Object
+    Dim currentFolderSubfolderCount As Long ' For subfolder processing block
+    Dim errNumFoldersCount As Long          ' For subfolder processing block
+    ' --- END OF CopyFoldersAndItems DECLARATIONS ---
+
+    On Error GoTo FolderErrorHandler_Recur
+
+    ' --- NAME-BASED SKIP FOR SPECIFIC SYSTEM/HOLD FOLDERS (Rule 3) ---
+    Dim internalFolderNameLower As String: internalFolderNameLower = LCase(sourceFolder.Name)
+    If internalFolderNameLower = "discovery holds" Or _
+       internalFolderNameLower = "purviewholds" Then ' Add other *always-skip-by-name* folders here
+        Debug.Print "RULE 3: SKIPPING folder by name (system/hold type): " & sourceFolder.FolderPath
+        errorLog = errorLog & "INFO: RULE 3 - Skipped folder '" & sourceFolder.Name & "' (name match in recursion)." & vbCrLf
+        Dim itemsInSkippedSystemFolder As Long
+        On Error Resume Next: itemsInSkippedSystemFolder = GetFolderItemCount(sourceFolder)
+        If Err.Number <> 0 Then itemsInSkippedSystemFolder = 0: Err.Clear
+        skippedItemsCount = skippedItemsCount + itemsInSkippedSystemFolder
+        On Error GoTo 0: GoTo CopyFoldersAndItems_Exit ' Exit this call
+    End If
+    ' --- END OF NAME-BASED SKIP ---
+
+    ' 1. Find or Create destination folder
+    Set destFolder = Nothing: createdFolder = False
+    On Error Resume Next: Set destFolder = destinationParentFolder.Folders(sourceFolder.Name)
+    Dim findErrNum As Long: findErrNum = Err.Number: Err.Clear
+    On Error GoTo FolderErrorHandler_Recur
+    If findErrNum <> 0 Then Debug.Print "   '" & sourceFolder.Name & "' not found. Will try to create."
+    
+    If destFolder Is Nothing Then
+        Debug.Print "   Attempting to create dest folder: '" & sourceFolder.Name & "' in '" & destinationParentFolder.Name & "'"
+        On Error Resume Next: Set destFolder = destinationParentFolder.Folders.Add(sourceFolder.Name)
+        Dim addErrNum As Long: addErrNum = Err.Number: Dim addErrDesc As String: addErrDesc = Err.Description
+        On Error GoTo FolderErrorHandler_Recur
+        If addErrNum <> 0 Then
+            errorLog = errorLog & "FATAL ERR creating '" & sourceFolder.Name & "' in '" & destinationParentFolder.FolderPath & "'.Err#" & addErrNum & ":" & addErrDesc & ".Skip." & vbCrLf
+            Dim skippedSubItems As Long
+            On Error Resume Next: skippedSubItems = GetFolderItemCount(sourceFolder)
+            If Err.Number <> 0 Then On Error Resume Next: skippedSubItems = sourceFolder.Items.count: Err.Clear
+            skippedItemsCount = skippedItemsCount + skippedSubItems: GoTo CopyFoldersAndItems_Exit
+        Else
+             createdFolder = True: Debug.Print "   Successfully created dest folder: " & destFolder.FolderPath
+        End If
+    Else
+         Debug.Print "   Found existing dest folder: " & destFolder.FolderPath
+    End If
+
+    If destFolder Is Nothing Then errorLog = errorLog & "CRIT: Dest folder still Nothing for '" & sourceFolder.FolderPath & "'.Skip." & vbCrLf: GoTo CopyFoldersAndItems_Exit
+
+    ' --- Build Cache for Destination Folder Items ---
+    Set destFolderItemsCache = CreateObject("Scripting.Dictionary"): destFolderItemsCache.CompareMode = vbTextCompare
+    Dim existingItemInDest As Object, itemKeyForCache As String, cacheBuildCount As Long : cacheBuildCount = 0
+    On Error Resume Next
+    Dim destFolderActualItemCount As Long: destFolderActualItemCount = destFolder.Items.count
+    If Err.Number = 0 And Not createdFolder And destFolderActualItemCount > 0 Then
+        Debug.Print "   Building dup cache for " & destFolderActualItemCount & " items in: " & destFolder.FolderPath: DoEvents
+        For Each existingItemInDest In destFolder.Items
+            itemKeyForCache = GenerateItemKey(existingItemInDest)
+            If itemKeyForCache <> "" And Not destFolderItemsCache.Exists(itemKeyForCache) Then destFolderItemsCache.Add itemKeyForCache, True
+        Next existingItemInDest
+        Debug.Print "   Finished dup cache for " & destFolder.FolderPath & ". Cached " & destFolderItemsCache.count & " keys."
+    ElseIf Err.Number <> 0 Then errorLog = errorLog & "WARN:No access to items in '" & destFolder.Name & "' for dup cache.Err#" & Err.Number & ":" & Err.Description & vbCrLf: Err.Clear
+    End If
+    On Error GoTo ItemErrorHandler_Recur
+    ' --- End Cache Build ---
+
+    ' 2. Copy Items
+    itemsInFolderProcessed = 0
+    On Error Resume Next: itemsInFolderTotalInSource = sourceFolder.Items.count
+    If Err.Number <> 0 Then errorLog = errorLog & "WARN:No item count for src '" & sourceFolder.Name & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf: itemsInFolderTotalInSource = -1: Err.Clear
+    On Error GoTo ItemErrorHandler_Recur
+
+    If itemsInFolderTotalInSource > 0 Or itemsInFolderTotalInSource = -1 Then
+        For Each item_Recur In sourceFolder.Items
+            Err.Clear: On Error GoTo ItemErrorHandler_Recur
+            currentItemSubject_Recur = "[No Subject]"
+            On Error Resume Next: currentItemSubject_Recur = item_Recur.Subject: If Err.Number <> 0 Then Err.Clear
+            On Error GoTo ItemErrorHandler_Recur
+            itemsInFolderProcessed = itemsInFolderProcessed + 1
+            Debug.Print "Folder: " & sourceFolder.Name & " - Item " & itemsInFolderProcessed & IIf(itemsInFolderTotalInSource = -1, "", " of " & itemsInFolderTotalInSource) & ": " & currentItemSubject_Recur
+            If itemsInFolderProcessed Mod 20 = 0 Then DoEvents ' Allow UI update every 20 items
+
+            Dim currentSourceItemKey_Recur As String: currentSourceItemKey_Recur = GenerateItemKey(item_Recur)
+            Dim itemIsDuplicate_Recur As Boolean: If currentSourceItemKey_Recur <> "" And destFolderItemsCache.Exists(currentSourceItemKey_Recur) Then itemIsDuplicate_Recur = True
+
+            If Not itemIsDuplicate_Recur Then
+                Set copiedItem_Recur = Nothing: Set copiedItem_Recur = item_Recur.Copy
+                If Not copiedItem_Recur Is Nothing Then
+                     Call CheckAndFixMessageClass(copiedItem_Recur, currentItemSubject_Recur, sourceFolder.Name)
+                     copiedItem_Recur.Move destFolder
+                     If Err.Number <> 0 Then
+                          errorLog = errorLog & "ERR Moving item '" & currentItemSubject_Recur & "' from '" & sourceFolder.Name & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf
+                          skippedItemsCount = skippedItemsCount + 1: On Error Resume Next: copiedItem_Recur.Delete: Err.Clear
+                     Else
+                          currentTotalImported = currentTotalImported + 1
+                          If currentSourceItemKey_Recur <> "" And Not destFolderItemsCache.Exists(currentSourceItemKey_Recur) Then destFolderItemsCache.Add currentSourceItemKey_Recur, True
+                     End If
+                Else
+                     errorLog = errorLog & "ERR Copying item '" & currentItemSubject_Recur & "' from '" & sourceFolder.Name & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf: skippedItemsCount = skippedItemsCount + 1
+                End If
+            Else
+                 errorLog = errorLog & "Skip (DUPE by Key): '" & currentItemSubject_Recur & "' in '" & destFolder.Name & "'" & vbCrLf: skippedItemsCount = skippedItemsCount + 1
+            End If
+ItemContinue_Recur: Set copiedItem_Recur = Nothing: On Error GoTo ItemErrorHandler_Recur
+        Next item_Recur
+    Else
+        Debug.Print "   Folder '" & sourceFolder.Name & "' has no items."
+    End If
+    
+    On Error GoTo FolderErrorHandler_Recur ' Re-arm for subfolder access
+
+    ' 3. Recursively process subfolders
+    On Error Resume Next ' Temp for .Folders.Count
+    currentFolderSubfolderCount = sourceFolder.Folders.count
+    errNumFoldersCount = Err.Number: Err.Clear
+    On Error GoTo FolderErrorHandler_Recur ' Restore
+
+    If errNumFoldersCount = 0 Then
+        If currentFolderSubfolderCount > 0 Then
+            Debug.Print "   Folder '" & sourceFolder.Name & "' has " & currentFolderSubfolderCount & " subfolders."
+            For Each subFolder_Recur In sourceFolder.Folders
+                Debug.Print "Processing subfolder: " & subFolder_Recur.FolderPath: DoEvents
+                CopyFoldersAndItems subFolder_Recur, destFolder, currentTotalImported ' Recursive Call
+            Next subFolder_Recur
+        Else
+            Debug.Print "   Folder '" & sourceFolder.Name & "' has no subfolders."
+        End If
+    Else
+        errorLog = errorLog & "WARN:No access to subfolders of '" & sourceFolder.FolderPath & "'.Err#" & errNumFoldersCount & ".Skip sub-processing." & vbCrLf
+        Debug.Print "WARN:No access to subfolders of '" & sourceFolder.FolderPath & "'.Sub-processing skipped."
+    End If
+
+CopyFoldersAndItems_Exit:
+    On Error GoTo 0 ' Turn off local handlers
+    Set destFolder = Nothing: Set item_Recur = Nothing: Set subFolder_Recur = Nothing
+    Set copiedItem_Recur = Nothing: Set destFolderItemsCache = Nothing: Set existingItemInDest = Nothing
+    Exit Sub
+
+ItemErrorHandler_Recur:
+    errorLog = errorLog & "ERR Processing item '" & currentItemSubject_Recur & "' in '" & sourceFolder.Name & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf
+    skippedItemsCount = skippedItemsCount + 1
+    If Not copiedItem_Recur Is Nothing Then On Error Resume Next: copiedItem_Recur.Delete: Err.Clear
+    Err.Clear: Resume ItemContinue_Recur
+
+FolderErrorHandler_Recur:
+     errorLog = errorLog & "ERR Folder Level (branch aborted): Folder='" & sourceFolder.Name & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf
+     Dim FESkippedSubItems As Long
+     On Error Resume Next: FESkippedSubItems = GetFolderItemCount(sourceFolder)
+     If Err.Number <> 0 Then Err.Clear: On Error Resume Next: FESkippedSubItems = sourceFolder.Items.count
+     If Err.Number <> 0 Then FESkippedSubItems = 0
+     Err.Clear: skippedItemsCount = skippedItemsCount + FESkippedSubItems
+     Resume CopyFoldersAndItems_Exit
+End Sub
+
+' --- OTHER HELPER FUNCTIONS ---
+Sub CheckAndFixMessageClass(ItemToCheck As Object, ByVal ItemSubjectToFix As String, ByVal InFolderName As String)
+    Dim OriginalMessageClass As String, DefaultMessageClass As String, ItemType As String
+    On Error GoTo CheckFixErrorHandler_Local
+    OriginalMessageClass = ItemToCheck.MessageClass
+    If Not LCase(OriginalMessageClass) Like "ipm.*" Then
+        Select Case TypeName(ItemToCheck)
+            Case "MailItem": DefaultMessageClass = "IPM.Note": ItemType = "Mail"
+            Case "ContactItem": DefaultMessageClass = "IPM.Contact": ItemType = "Contact"
+            Case "AppointmentItem": DefaultMessageClass = "IPM.Appointment": ItemType = "Appointment"
+            Case "TaskItem": DefaultMessageClass = "IPM.Task": ItemType = "Task"
+            Case "PostItem": DefaultMessageClass = "IPM.Post": ItemType = "Post"
+            Case "DistListItem": DefaultMessageClass = "IPM.DistList": ItemType = "Distribution List"
+            Case "NoteItem": DefaultMessageClass = "IPM.StickyNote": ItemType = "Note"
+            Case "JournalItem": DefaultMessageClass = "IPM.Activity": ItemType = "Journal"
+            Case Else: DefaultMessageClass = "IPM.Document": ItemType = TypeName(ItemToCheck)
+        End Select
+        errorLog = errorLog & "INFO:Reset MsgClass " & ItemType & " '" & ItemSubjectToFix & "' in '" & InFolderName & "'.'" & OriginalMessageClass & "'->'" & DefaultMessageClass & "'" & vbCrLf
+        ItemToCheck.MessageClass = DefaultMessageClass: ItemToCheck.Save
+        If Err.Number <> 0 Then errorLog = errorLog & "  ->WARN:Err#" & Err.Number & " save item '" & ItemSubjectToFix & "' after MsgClass reset:" & Err.Description & vbCrLf: Err.Clear
+    End If
+CheckFixExit_Local: Exit Sub
+CheckFixErrorHandler_Local:
+    errorLog = errorLog & "ERR:CheckMsgClass for '" & ItemSubjectToFix & "':Err#" & Err.Number & ":" & Err.Description & vbCrLf
+    Err.Clear: Resume CheckFixExit_Local
+End Sub
+
+Function GetFolderItemCount(folderToCount As Outlook.MAPIFolder) As Long
+    Dim count As Long, subFolderToCount As Outlook.MAPIFolder, currentFolderItemCount As Long
+    On Error Resume Next
+    currentFolderItemCount = folderToCount.Items.count
+    If Err.Number <> 0 Then errorLog = errorLog & "Warn(Count):Fail '" & folderToCount.FolderPath & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf: Err.Clear: currentFolderItemCount = 0
+    count = currentFolderItemCount
+    On Error GoTo 0: On Error Resume Next
+    Dim FoldersCollectionCount As Long: FoldersCollectionCount = folderToCount.Folders.count ' Check if Folders collection itself is accessible first
+    If Err.Number = 0 Then
+        If FoldersCollectionCount > 0 Then
+            For Each subFolderToCount In folderToCount.Folders
+                count = count + GetFolderItemCount(subFolderToCount)
+                If Err.Number <> 0 Then errorLog = errorLog & "Warn(Count):RecurseFail sub of " & folderToCount.FolderPath & ".Err#" & Err.Number & ":" & Err.Description & vbCrLf: Err.Clear
+            Next subFolderToCount
+        End If
+    Else ' Error accessing .Folders.count
+         errorLog = errorLog & "Warn(Count):No access to subs in '" & folderToCount.FolderPath & "'.Err#" & Err.Number & ":" & Err.Description & vbCrLf: Err.Clear
+    End If
+    On Error GoTo 0: GetFolderItemCount = count: Set subFolderToCount = Nothing
+End Function
+
+Sub SaveLogFile(sourceName As String, destName As String, sourceItemCount As Long, destItemCountBefore As Long, destItemCountAfter As Long, finalImportedCount As Long, finalSkippedCount As Long)
+    Dim fso As Object, logFileStream As Object, filePath As String, retVal As LongPtr
+    On Error GoTo LogFileErrorHandler_Local
+    filePath = Environ("TEMP") & "\PST_Merge_Log_" & Format(Now, "yyyyMMdd_HHmmss") & ".txt"
+    Set fso = CreateObject("Scripting.FileSystemObject"): Set logFileStream = fso.CreateTextFile(filePath, True, True) ' Overwrite=True, Unicode=True
+    logFileStream.WriteLine "PST Merge Log - " & Format(Now, "yyyy-mm-dd hh:mm:ss")
+    logFileStream.WriteLine String(70, "=")
+    logFileStream.WriteLine "Source Root: " & sourceName: logFileStream.WriteLine "Destination Store: " & destName
+    logFileStream.WriteLine String(70, "-")
+    logFileStream.WriteLine "Source Items (est. pre-skip): " & sourceItemCount
+    logFileStream.WriteLine "Dest Items Before: " & destItemCountBefore: logFileStream.WriteLine "Dest Items After: " & destItemCountAfter
+    logFileStream.WriteLine String(70, "-")
+    logFileStream.WriteLine "Items Copied Successfully: " & finalImportedCount: logFileStream.WriteLine "Items Skipped (Dupes/Errors/Rules): " & finalSkippedCount
+    logFileStream.WriteLine String(70, "=") & vbCrLf & "Detailed Log:" & vbCrLf & String(70, "-")
+    If errorLog <> "" Then logFileStream.Write errorLog Else logFileStream.WriteLine "No specific errors or warnings recorded. Skips were likely duplicates or by explicit rule."
+    logFileStream.Close: Debug.Print "Log file saved: " & filePath
+    retVal = ShellExecute(0, "open", filePath, vbNullString, vbNullString, 1) ' 1 = SW_SHOWNORMAL
+    If retVal <= 32 Then MsgBox "Log file was saved to:" & vbCrLf & filePath & vbCrLf & vbCrLf & "(Could not open it automatically)", vbExclamation, "Log Saved"
+LogFileExit_Local: On Error Resume Next: Set logFileStream = Nothing: Set fso = Nothing: Exit Sub
+LogFileErrorHandler_Local:
+    Debug.Print "Error in SaveLogFile: #" & Err.Number & " - " & Err.Description
+    MsgBox "CRITICAL ERROR saving log file!" & vbCrLf & "Error: " & Err.Description & vbCrLf & "Attempted Path: " & filePath, vbCritical, "Log File Error"
+    Resume LogFileExit_Local
+End Sub

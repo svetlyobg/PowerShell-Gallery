@@ -31,6 +31,8 @@ Creating subfolders for each category of scripts
 
 [Manual uninstaller for Microsoft Office Click-to-Run](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/Remove_Office.ps1)
 
+[Merge the contents of a .pst file into the user's default Outlook mailbox](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/MSOffice/__OUTLOOK_MIGRATE.txt)
+
 ## Active-Directory
 
 [Check for All Disabled Active Directory Users](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Active-Directory/Check-for-All-Disabled-Active-Directory-Users.ps1)
