@@ -78,6 +78,8 @@ Creating subfolders for each category of scripts
 
 [Check Exchange Mailbox Mail Flow](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Check-Exchange-Mailbox-Mail-Flow.ps1)
 
+[Export all Microsoft 365 and distribution group members](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Export_Tenant_Groups_Members.ps1)
+
 ## Hyper-V
 [Start All Hyper-V Virtual Machines](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Hyper-V/Start-All-Hyper-V-Virtual-Machines.ps1)
 
