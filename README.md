@@ -215,6 +215,8 @@ Creating subfolders for each category of scripts
 
 [Enable Windows 11 Upgrade v2](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Enable_Windows_11_Upgrade_v2.ps1)
 
+[Reset AntDesk ID](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Random/Reset_Anydesk_ID.bat)
+
 ## Windows Event Log
 [Export System, Security and Application logs for the Past 30 Days to a .CSV File](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Windows%20Event%20Log/Export-System%2C-Security-and-Application-logs-for-the-Past-30-Days-to-a-.CSV.ps1)
 
