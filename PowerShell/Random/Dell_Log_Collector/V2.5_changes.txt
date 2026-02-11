@@ -1,0 +1,8 @@
+V2.5
+
+based on Dell_Log_Collector_Example_V2.3 with:
+- the structure of the script has been optimized, which is helpful for simplifying testing. Steps that are required before and after log collection are now located at the top section.
+- logs- and minidump-collections are now splitted in two separate ZIP files
+- ZIP file naming example:
+-- Precision324_1234567_12082025_14480943.zip
+-- Dumps_Precision3240_1234567_12082025_14480943.zip
