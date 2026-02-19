@@ -82,6 +82,11 @@ Creating subfolders for each category of scripts
 
 [Export all Microsoft 365 and distribution group members](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Export_Tenant_Groups_Members.ps1)
 
+[Get Shared File Permissions](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/FIle_Server/Get-SharePermissions2.ps1)
+[Command to run the script in powershell](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/FIle_Server/command.txt)
+
+## FIle_Server
+
 [Auto-expanding archive settings](https://raw.githubusercontent.com/svetlyobg/PowerShell-Gallery/main/PowerShell/Exchange/Exchange_Powershell_Auto-Expand-Archive.ps1)
 
 ## Hyper-V
